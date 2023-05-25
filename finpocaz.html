@@ -8,6 +8,28 @@
 </head>
 
 <script>
+    const tableCells = document.querySelectorAll('td');
+
+    // Создаем массив для хранения чисел из ячеек таблицы
+    const numbers = [];
+
+    // Проходимся по всем ячейкам таблицы и извлекаем числа
+    tableCells.forEach(cell => {
+    const number = parseFloat(cell.textContent);
+    if (!isNaN(number)) {
+        numbers.push(number);
+    }
+    });
+
+    // Находим среднее арифметическое
+    const sum = numbers.reduce((acc, val) => acc + val, 0);
+    const avg = sum / numbers.length;
+
+    // Находим среднеквадратичное отклонение
+    const variance = numbers.reduce((acc, val) => acc + (val - avg) ** 2, 0) / numbers.length;
+    const stdDev = Math.sqrt(variance);
+
+    console.log("Среднеквадратичноеотклонение", stdDev);
 
 </script>
 
@@ -70,6 +92,7 @@
     <div style="font-size: 20px; margin: 20px;"><b>Таблица с ценами закрытия за весь апрель</b></div>
 
 <div class="rt">
+    
     <table>
         <thead>
             <tr>
@@ -150,7 +173,7 @@
 
 
 
-    <footer style="background-color: rgb(22, 111, 159); width: 100%; height: 60px; font-size: 20px;">
+    <footer style="background-color: rgb(22, 111, 159); width: 100%; height: 60px; font-size: 35px;">
         2016-2023 © НПО «Наука»
     </footer>
 </body>
