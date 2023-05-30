@@ -7,68 +7,81 @@
     <title>Document</title>
 </head>
 
-<script>
-    const tableCells = document.querySelectorAll('td');
 
-    // Создаем массив для хранения чисел из ячеек таблицы
-    const numbers = [];
+    <script>
+          function calculate() {
 
-    // Проходимся по всем ячейкам таблицы и извлекаем числа
-    tableCells.forEach(cell => {
-    const number = parseFloat(cell.textContent);
-    if (!isNaN(number)) {
-        numbers.push(number);
-    }
-    });
+              var table = document.getElementById("myTable");
 
-    // Находим среднее арифметическое
-    const sum = numbers.reduce((acc, val) => acc + val, 0);
-    const avg = sum / numbers.length;
+              var values = Array.from(table.querySelectorAll('td.price')).map(function(cell) {
+                return Number(cell.innerHTML);
+              });
 
-    // Находим среднеквадратичное отклонение
-    const variance = numbers.reduce((acc, val) => acc + (val - avg) ** 2, 0) / numbers.length;
-    const stdDev = Math.sqrt(variance);
+              var maxVal = Math.max(...values);
 
-    console.log("Среднеквадратичноеотклонение", stdDev);
+              var minVal = Math.min(...values);
 
-</script>
+              var sumSq = values.reduce(function(sum, value) {
+                return sum + value * value;
+              }, 0);
+
+              var avgVal = Math.sqrt(sumSq / values.length);
+
+              document.getElementById("max").innerHTML = maxVal;
+              document.getElementById("min").innerHTML = minVal;
+              document.getElementById("avg").innerHTML = avgVal;
+              }
+      </script>
+
+
 
 <style>
     body {
      background-color: rgb(184, 184, 240);
     }
-    .qw {
-        color: blue;
-        text-align: center;
-        margin: 50px;
-    }
-    .wq {
-       font-size: 20px;
-       margin: 20px;
-    }
 
     .rt {
-        font-size: 13px;
         border: 3px solid black;
+    }
+
+    .td, th {
         border: 1px solid black;
     }
 
-    table {
-        border: 1px solid black;
-    }
+    .navbar {
+            position: absolute;
+            top: 20%;
+            right: 0;
+            padding: 10px;
+            box-sizing: border-box;
+            z-index: 1;
+        }
 
-    td, th {
-        border: 1px solid black;
-    }
+        .navbar a {
+            display: inline-block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
 
-    .rt {
-        font-size: 13px;
-    }
+        .navbar a:hover {
+            background-color: #ddd;
+        }
 
-    .ty {
-        font-size: 20px;
-        margin: 20px;
-    }
+        .navbar a.active {
+            background-color: #ccc;
+        }
+
+        .ed {
+            width: 200px;
+            height: 50px;
+            margin: 20px;
+        }
+
+        .ryt {
+            font-size: 10px;
+        }
+
  </style>
 
 <body>
@@ -76,25 +89,43 @@
         <img class="jpg" src="60c53417c6c08f1d13995d8f15606e4c.jpg">
     </header>  
 
-    <div class="qw">
+<div class="navbar">
+    <ol>
+        <li>
+            <a href="ocompanii.html" target="_blank">О КОМПАНИИ</a>
+        </li>
+
+        <li>
+            <a href="finpocaz.html" target="_blank">ОСНОВНЫЕ ФИНАНСОВЫЕ ПОКАЗАТЕЛИ</a>
+        </li>
+
+        <li>
+            <a href="contactndann.html" target="_blank">КОНТАКТНЫЕ ДАННЫЕ</a>
+        </li>
+
+        <li>
+            <a href="VIDEO.html" target="_blank" class="active">ВИДЕО</a>
+        </li>
+    </ol>
+</div>
+
+    <div style="margin: 20px;">
         <h1><b>ОСНОВНЫЕ ФИНАНСОВЫЕ ПОКАЗАТЕЛИ</b></h1>
     </div>
 
-    <div class="wq">
+    <div style="margin: 20px;">
         <b>Капитализация на конец апреля: 4.105.000.000 ₽</b>
     </div>
 
-    <div class="wq">
+    <div style="margin: 20px;">
         <b>Общее число акций, обращающихся на
             Московской фондовой бирже: 13982987</b>
     </div>
 
     <div style="font-size: 20px; margin: 20px;"><b>Таблица с ценами закрытия за весь апрель</b></div>
 
-<div class="rt">
-    
-    <table>
-        <thead>
+<div class="ryt">
+    <table border="1" id="myTable">
             <tr>
                 <th><b>Число</b></th>
                 <th>1 Апреля</th>
@@ -128,50 +159,52 @@
                 <th>29 Апреля</th>
                 <th>30 Апреля</th>
             </tr>
-        </thead>
-        <tbody>
+
             <tr>
                 <td><b>цена акций</b></td>
-                <td>345₽</td>
-                <td>340₽</td>
-                <td>341₽</td>
-                <td>345₽</td>
-                <td>346₽</td>
-                <td>344₽</td>
-                <td>342₽</td>
-                <td>344₽</td>
-                <td>342₽</td>
-                <td>344₽</td>
-                <td>346₽</td>
-                <td>344₽</td>
-                <td>341₽</td>
-                <td>345₽</td>
-                <td>346₽</td>
-                <td>347₽</td>
-                <td>348₽</td>
-                <td>345₽</td>
-                <td>342₽</td>
-                <td>345₽</td>
-                <td>346₽</td>
-                <td>346₽</td>
-                <td>347₽</td>
-                <td>345₽</td>
-                <td>345₽</td>
-                <td>341₽</td>
-                <td>342₽</td>
-                <td>345₽</td>
-                <td>345₽</td>
-                <td>348₽</td>
+                <td class="price">345</td>
+                <td class="price">340</td>
+                <td class="price">341</td>
+                <td class="price">345</td>
+                <td class="price">346</td>
+                <td class="price">344</td>
+                <td class="price">342</td>
+                <td class="price">344</td>
+                <td class="price">342</td>
+                <td class="price">344</td>
+                <td class="price">346</td>
+                <td class="price">344</td>
+                <td class="price">341</td>
+                <td class="price">345</td>
+                <td class="price">346</td>
+                <td class="price">347</td>
+                <td class="price">348</td>
+                <td class="price">345</td>
+                <td class="price">342</td>
+                <td class="price">345</td>
+                <td class="price">346</td>
+                <td class="price">346</td>
+                <td class="price">347</td>
+                <td class="price">345</td>
+                <td class="price">345</td>
+                <td class="price">341</td>
+                <td class="price">342</td>
+                <td class="price">345</td>
+                <td class="price">345</td>
+                <td class="price">348</td>
             </tr>
-        </tbody>
     </table>
 </div>
 
-<div class="ty">
-    <b>Минимальная и максимальная цена за апрель: 340₽ минимальная, 348₽ максимальная</b>
+<div>
+    <button class="ed" onclick="calculate()">Рассчитать основные показатели</button>
+
+    <p style="margin: 20px;">максимальный показатель: <span id="max"></span></p>
+
+    <p style="margin: 20px;">минимальный показатель: <span id="min"></span></p>
+
+    <p style="margin: 20px;">средний показатель: <span id="avg"></span></p>
 </div>
-
-
 
     <footer style="background-color: rgb(22, 111, 159); width: 100%; height: 60px; font-size: 35px;">
         2016-2023 © НПО «Наука»

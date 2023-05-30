@@ -12,6 +12,30 @@
         background-color: rgb(184, 184, 240);
        }
 
+       .navbar {
+            position: absolute;
+            top: 20%;
+            right: 0;
+            padding: 10px;
+            box-sizing: border-box;
+            z-index: 1;
+        }
+
+        .navbar a {
+            display: inline-block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+
+        .navbar a.active {
+            background-color: #ccc;
+        }
+
     </style>
 
     <header style="border-bottom: 5px solid rgb(14, 2, 241); border-top: 5px solid rgb(37, 10, 241); background-color: rgb(249, 251, 252);">
@@ -19,6 +43,27 @@
     </header>
 </head>
 <body>
+
+    <div class="navbar">
+    <ol>
+        <li>
+            <a href="ocompanii.html" target="_blank">О КОМПАНИИ</a>
+        </li>
+
+        <li>
+            <a href="finpocaz.html" target="_blank">ОСНОВНЫЕ ФИНАНСОВЫЕ ПОКАЗАТЕЛИ</a>
+        </li>
+
+        <li>
+            <a href="contactndann.html" target="_blank">КОНТАКТНЫЕ ДАННЫЕ</a>
+        </li>
+
+        <li>
+            <a href="VIDEO.html" target="_blank" class="active">ВИДЕО</a>
+        </li>
+    </ol>
+</div>
+
     <div>
    <h1 style="color: blue;text-align: center; margin: 50px;"><b>О КОМПАНИИ</b></h1>
     </div>
